@@ -19,12 +19,10 @@ using System;
 
 public class Example : MonoBehaviour
 {
-    
+	public AudioProcessor processor;
+
 	void Start ()
 	{
-		//Select the instance of AudioProcessor and pass a reference
-		//to this object
-		AudioProcessor processor = FindObjectOfType<AudioProcessor> ();
 		processor.onBeat.AddListener (onOnbeatDetected);
 		processor.onSpectrum.AddListener (onSpectrum);
 	}
@@ -46,7 +44,9 @@ public class Example : MonoBehaviour
 		for (int i = 0; i < spectrum.Length; ++i) {
 			Vector3 start = new Vector3 (i, 0, 0);
 			Vector3 end = new Vector3 (i, spectrum [i], 0);
-			Debug.DrawLine (start, end);
+
+			Debug.Log(i + " - " + spectrum[i]);
+			//Debug.DrawLine (start, end);
 		}
 	}
 }

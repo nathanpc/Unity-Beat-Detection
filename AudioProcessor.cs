@@ -18,7 +18,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[RequireComponent (typeof(AudioSource))]
+//[RequireComponent (typeof(AudioSource))]
 public class AudioProcessor : MonoBehaviour
 {
 	public AudioSource audioSource;
@@ -96,8 +96,6 @@ public class AudioProcessor : MonoBehaviour
 	void Start ()
 	{
 		initArrays ();
-
-		audioSource = GetComponent<AudioSource> ();
 		samplingRate = audioSource.clip.frequency;
 
 		framePeriod = (float)bufferSize / (float)samplingRate;
@@ -182,6 +180,7 @@ public class AudioProcessor : MonoBehaviour
 			for (int i = tempopd / 2; i < System.Math.Min (colmax, 2 * tempopd); ++i) {
 				// objective function - this beat's cost + score to last beat + transition penalty
 				float score = onset + scorefun [(now - i + colmax) % colmax] - alph * (float)System.Math.Pow (System.Math.Log ((float)i / (float)tempopd), 2);
+
 				// keep track of the best-scoring predecesor
 				if (score > smax) {
 					smax = score;
