@@ -14,20 +14,31 @@ public class ScaleLinearController : LinearControllerBase {
 	public float yScaleFactor = 1.0f;
 	public bool scaleZ = true;
 	public float zScaleFactor = 1.0f;
+	private Vector3 targetScale;
+
+	protected override void Start() {
+		base.Start();
+		targetScale = new Vector3();
+	}
+
+	protected override void Update() {
+		base.Update();
+
+		// Smoothly transition to the target position.
+		transform.localScale = Vector3.Lerp(transform.localScale, targetScale,
+			Time.deltaTime * ChangeSpeed);
+	}
 
 	protected override void Change(float value) {
 		// Grab the current scale values.
-		Vector3 scale = transform.localScale;
+		targetScale = transform.localScale;
 
 		// Set the values if needed.
 		if (scaleX)
-			scale.x = value * xScaleFactor;
+			targetScale.x = value * xScaleFactor;
 		if (scaleY)
-			scale.y = value * yScaleFactor;
+			targetScale.y = value * yScaleFactor;
 		if (scaleZ)
-			scale.z = value * zScaleFactor;
-
-		// Apply new scaled values.
-		transform.localScale = scale;
+			targetScale.z = value * zScaleFactor;
 	}
 }

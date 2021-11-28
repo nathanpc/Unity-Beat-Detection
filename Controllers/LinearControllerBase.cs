@@ -12,9 +12,10 @@ public abstract class LinearControllerBase : MonoBehaviour {
 	[Header("Frequency Selector")]
 	[SerializeField] protected uint _frequencyBin = 0;
 	[SerializeField] protected bool _useFullSpectrumAverage = false;
-	[Header("Change Range")]
+	[Header("Change Range and Speed")]
 	[SerializeField] protected float _minimumChangeValue = 0.0f;
 	[SerializeField] protected float _maximumChangeValue = 1.0f;
+	[SerializeField] protected float _changeSpeed = 1.0f;
 
 	/// <summary>
 	/// Sets things up internally. MUST ALWAYS BE CALLED FROM INHERITED CLASES.
@@ -32,6 +33,20 @@ public abstract class LinearControllerBase : MonoBehaviour {
 
 		// Attach ourselves to the audio processor events.
 		Processor.onSpectrum.AddListener(OnSpectrumEventHandler);
+	}
+
+	/// <summary>
+	/// Does things on every update.
+	/// </summary>
+	protected virtual void Update() {
+		// For now do nothing...
+	}
+
+	/// <summary>
+	/// Does things on every frame.
+	/// </summary>
+	protected virtual void FixedUpdate() {
+		// For now do nothing...
 	}
 
 	/// <summary>
@@ -115,6 +130,14 @@ public abstract class LinearControllerBase : MonoBehaviour {
 	public float MaximumValue {
 		get { return _maximumChangeValue; }
 		set { _maximumChangeValue = value; }
+	}
+
+	/// <summary>
+	/// Speed of the smoothed change.
+	/// </summary>
+	public float ChangeSpeed {
+		get { return _changeSpeed; }
+		set { _changeSpeed = value; }
 	}
 
 	/// <summary>
