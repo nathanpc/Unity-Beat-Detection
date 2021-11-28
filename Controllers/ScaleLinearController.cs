@@ -24,7 +24,7 @@ public class ScaleLinearController : LinearControllerBase {
 	protected override void Update() {
 		base.Update();
 
-		// Smoothly transition to the target position.
+		// Smoothly transition to the target scale.
 		transform.localScale = Vector3.Lerp(transform.localScale, targetScale,
 			Time.deltaTime * ChangeSpeed);
 	}
