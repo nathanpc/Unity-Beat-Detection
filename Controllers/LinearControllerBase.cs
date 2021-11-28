@@ -19,7 +19,7 @@ public abstract class LinearControllerBase : MonoBehaviour {
 	/// <summary>
 	/// Sets things up internally. MUST ALWAYS BE CALLED FROM INHERITED CLASES.
 	/// </summary>
-	protected void Start() {
+	protected virtual void Start() {
 		// Check if we actually have an Audio Processor set. Otherwise try to find it.
 		if (Processor == null)
 			Processor = FindObjectOfType<AudioProcessor>();
