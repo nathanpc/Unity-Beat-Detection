@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Controls the scale of a component linearly according to a music.
+/// Controls the position of a component linearly according to a music.
 /// </summary>
 public class PositionLinearController : LinearControllerBase {
 	[Space(10)]
