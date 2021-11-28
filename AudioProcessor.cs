@@ -35,6 +35,9 @@ public class AudioProcessor : MonoBehaviour {
 	public float gThresh = 0.1f;
 	// sensitivity
 
+	// Scaling factor;
+	public float amplificationFactor = 100.0f;
+
 	int blipDelayLen = 16;
 	int[] blipDelay;
 
@@ -276,7 +279,7 @@ public class AudioProcessor : MonoBehaviour {
 			// line has been changed since discussion in the comments
 			// avg /= (hiBound - lowBound);
 			avg /= (hiBound - lowBound + 1);
-			averages[i] = avg;
+			averages[i] = avg * amplificationFactor;
 		}
 	}
 
