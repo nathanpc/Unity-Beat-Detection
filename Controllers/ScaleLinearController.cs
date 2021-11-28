@@ -18,7 +18,7 @@ public class ScaleLinearController : LinearControllerBase {
 
 	protected override void Start() {
 		base.Start();
-		targetScale = new Vector3();
+		targetScale = transform.localScale;
 	}
 
 	protected override void Update() {

@@ -15,27 +15,34 @@ public class PositionLinearController : LinearControllerBase {
 	public bool changeZPosition = true;
 	public float zChangeMultiplier = 1.0f;
 	private Vector3 originalPosition;
+	private Vector3 targetPosition;
 
 	protected override void Start() {
 		base.Start();
 
 		// Grab the initial position.
 		originalPosition = transform.position;
+		targetPosition = transform.position;
+	}
+
+	protected override void Update() {
+		base.Update();
+
+		// Smoothly transition to the target position.
+		transform.position = Vector3.Lerp(transform.position, targetPosition,
+			Time.deltaTime * ChangeSpeed);
 	}
 
 	protected override void Change(float value) {
 		// Grab the original position.
-		Vector3 position = originalPosition;
+		targetPosition = originalPosition;
 
 		// Set the values if needed.
 		if (changeXPosition)
-			position.x += value * xChangeMultiplier;
+			targetPosition.x += value * xChangeMultiplier;
 		if (changeYPosition)
-			position.y += value * yChangeMultiplier;
+			targetPosition.y += value * yChangeMultiplier;
 		if (changeZPosition)
-			position.z += value * zChangeMultiplier;
-
-		// Apply new position values.
-		transform.position = position;
+			targetPosition.z += value * zChangeMultiplier;
 	}
 }
