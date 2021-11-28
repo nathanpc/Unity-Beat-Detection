@@ -16,6 +16,8 @@ public abstract class LinearControllerBase : MonoBehaviour {
 	[SerializeField] protected float _minimumChangeValue = 0.0f;
 	[SerializeField] protected float _maximumChangeValue = 1.0f;
 	[SerializeField] protected float _changeSpeed = 1.0f;
+	[Header("Debugging")]
+	[SerializeField] protected bool _showValue = false;
 
 	/// <summary>
 	/// Sets things up internally. MUST ALWAYS BE CALLED FROM INHERITED CLASES.
@@ -77,6 +79,10 @@ public abstract class LinearControllerBase : MonoBehaviour {
 		} else if (value > MaximumValue) {
 			value = MaximumValue;
 		}
+
+		// Show the computed value?
+		if (ShowValue)
+			Debug.Log(value);
 
 		// Send the value to our change event function.
 		Change(value);
@@ -147,5 +153,13 @@ public abstract class LinearControllerBase : MonoBehaviour {
 	public float Gain {
 		get { return _localGain; }
 		set { _localGain = value; }
+	}
+
+	/// <summary>
+	/// Show the change value for debugging purposes.
+	/// </summary>
+	public bool ShowValue {
+		get { return _showValue; }
+		set { _showValue = value; }
 	}
 }
