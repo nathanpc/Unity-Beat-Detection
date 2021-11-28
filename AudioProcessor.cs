@@ -306,6 +306,14 @@ public class AudioProcessor : MonoBehaviour {
 
 	}
 
+	/// <summary>
+	/// Number of bands in the spectrum array.
+	/// </summary>
+	public int NumberOfBands {
+		get { return nBand; }
+		set { nBand = value; }
+	}
+
 	// class to compute an array of online autocorrelators
 	private class Autoco {
 		private int del_length;
