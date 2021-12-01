@@ -21,8 +21,8 @@ public class RotationLinearController : LinearControllerBase {
 		base.Start();
 
 		// Grab the initial rotation.
-		originalRotation = transform.localRotation;
-		targetRotation = transform.localRotation;
+		originalRotation = transform.rotation;
+		targetRotation = transform.rotation;
 	}
 
 	protected override void Update() {
